@@ -7,18 +7,8 @@ import { setFips } from 'crypto'
 import sentResponse from '../../../shared/sentResponse'
 
 import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catcheAsync'
 
-const catchAsync = (fn: RequestHandler) => {
-    return async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            await fn(req, res, next)
-
-        }
-        catch (err) {
-            next(err)
-        }
-    }
-}
 
 const getAllFromDB: RequestHandler = catchAsync(async (req, res) => {
 
